@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmarks Sync</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h4>🔖 书签同步</h4>
+      <button id="settingsBtn" class="btn btn-link btn-small">
+        ⚙️ 设置
+      </button>
+    </div>
+
+    <div class="status-section">
+      <div class="status-item">
+        <span class="label">同步状态:</span>
+        <span id="syncStatus" class="status-badge pending">未同步</span>
+      </div>
+      <div class="status-item">
+        <span class="label">上次同步:</span>
+        <span id="lastSyncTime">从未</span>
+      </div>
+      <div class="status-item">
+        <span class="label">Gist 状态:</span>
+        <span id="gistStatus" class="status-badge pending">未创建</span>
+      </div>
+    </div>
+
+    <div class="actions-section">
+      <button id="uploadBtn" class="btn btn-primary">
+        <span class="btn-icon">⬆️</span>
+        上传
+      </button>
+      <button id="downloadBtn" class="btn btn-secondary">
+        <span class="btn-icon">⬇️</span>
+        下载
+      </button>
+    </div>
+
+    <div class="info-section">
+      <div class="info-item">
+        <span class="info-label">本机书签:</span>
+        <span id="localBookmarkCount">0</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">远程书签:</span>
+        <span id="remoteBookmarkCount">-</span>
+      </div>
+    </div>
+
+    <div id="message" class="message"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
