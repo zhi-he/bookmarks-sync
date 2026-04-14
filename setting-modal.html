@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设置 - Bookmarks Sync</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="options-container">
+    <div class="header">
+      <div class="header-content">
+        <h1>⚙️ 设置</h1>
+        <p class="subtitle">配置 Bookmarks Sync</p>
+      </div>
+      <button id="closeBtn" class="btn btn-close btn-small">✕ 关闭</button>
+    </div>
+
+    <div class="settings-group">
+      <h2>同步平台</h2>
+
+      <div class="form-group">
+        <label>选择同步平台</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="syncPlatform" value="github" checked>
+            <span class="radio-text">GitHub Gist</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="syncPlatform" value="gitee">
+            <span class="radio-text">Gitee Gist</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-group" id="githubAuthGroup">
+      <h2>GitHub 认证</h2>
+
+      <div class="form-group">
+        <label for="githubToken">GitHub Token</label>
+        <div class="input-with-toggle">
+          <input type="password" id="githubToken" placeholder="输入你的 GitHub Personal Access Token">
+          <button type="button" id="toggleGitHubToken" class="btn btn-link btn-small">👁️</button>
+        </div>
+        <small class="help-text">
+          在 <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings</a> 中创建 Personal Access Token，
+          需要勾选 <code>gist</code> 权限
+        </small>
+      </div>
+
+      <div class="form-actions">
+        <button id="saveGitHubTokenBtn" class="btn btn-primary">保存 Token</button>
+        <button id="testGitHubTokenBtn" class="btn btn-secondary">测试连接</button>
+      </div>
+
+      <div id="githubAuthStatus" class="status-message"></div>
+    </div>
+
+    <div class="settings-group" id="giteeAuthGroup" style="display: none;">
+      <h2>Gitee 认证</h2>
+
+      <div class="form-group">
+        <label for="giteeToken">Gitee Token</label>
+        <div class="input-with-toggle">
+          <input type="password" id="giteeToken" placeholder="输入你的 Gitee Personal Access Token">
+          <button type="button" id="toggleGiteeToken" class="btn btn-link btn-small">👁️</button>
+        </div>
+        <small class="help-text">
+          在 <a href="https://gitee.com/profile/personal_access_tokens" target="_blank">Gitee 个人设置</a> 中创建 Personal Access Token，
+          需要勾选 <code>gist</code> 权限
+        </small>
+      </div>
+
+      <div class="form-actions">
+        <button id="saveGiteeTokenBtn" class="btn btn-primary">保存 Token</button>
+        <button id="testGiteeTokenBtn" class="btn btn-secondary">测试连接</button>
+      </div>
+
+      <div id="giteeAuthStatus" class="status-message"></div>
+    </div>
+
+    <div class="settings-group">
+      <h2>Gist 管理</h2>
+
+      <div class="form-group">
+        <label for="gistId">Gist ID</label>
+        <input type="text" id="gistId" placeholder="手动输入 Gist ID（可选）">
+        <small class="help-text">
+          留空则首次同步时自动创建。如果已有 Gist，可在此输入 ID。<br>
+          <strong>如何找到 Gist ID：</strong><br>
+          • <strong>GitHub</strong>：在 Gist 页面 URL 中，如 <code>https://gist.github.com/username/123456789</code>，ID 为 <code>123456789</code><br>
+          • <strong>Gitee</strong>：在 Gist 页面 URL 中，如 <code>https://gitee.com/username/gists/123456789</code>，ID 为 <code>123456789</code>
+        </small>
+      </div>
+
+      <div class="form-actions">
+        <button id="saveGistIdBtn" class="btn btn-primary">保存 Gist ID</button>
+        <button id="deleteGistBtn" class="btn btn-danger">删除 Gist</button>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <h2>关于</h2>
+
+      <div class="info-item">
+        <span class="info-label">版本:</span>
+        <span id="version">-</span>
+      </div>
+
+      <div class="info-item">
+        <span class="info-label">描述:</span>
+        <span>多端同步书签到 GitHub Gists 或 Gitee Gists，目前只测试了 Chrome 浏览器 和 Edge 浏览器</span>
+      </div>
+    </div>
+
+    <div id="message" class="message"></div>
+  </div>
+
+  <script src="settings-modal.js"></script>
+</body>
+</html>
