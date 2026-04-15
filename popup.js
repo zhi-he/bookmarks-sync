@@ -8,7 +8,6 @@ const lastSyncTime = document.getElementById('lastSyncTime');
 const gistStatus = document.getElementById('gistStatus');
 const localBookmarkCount = document.getElementById('localBookmarkCount');
 const remoteBookmarkCount = document.getElementById('remoteBookmarkCount');
-const gistId = document.getElementById('gistId');
 const message = document.getElementById('message');
 const uploadBtn = document.getElementById('uploadBtn');
 const downloadBtn = document.getElementById('downloadBtn');
@@ -42,10 +41,6 @@ async function updateStatus() {
     const exists = await gistExists();
     gistStatus.textContent = exists ? '已创建' : '未创建';
     gistStatus.className = `status-badge ${exists ? 'success' : 'pending'}`;
-
-    // 获取 Gist ID
-    const gistIdData = await chrome.storage.local.get('gistId');
-    gistId.textContent = gistIdData.gistId || '-';
 
   } catch (error) {
     console.error('更新状态失败:', error);

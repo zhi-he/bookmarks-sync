@@ -230,7 +230,7 @@ body {
 .info-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
   padding: 10px 0;
 }
 
@@ -242,6 +242,11 @@ body {
   font-size: 13px;
   color: #586069;
   font-weight: 500;
+  margin-right: 10px;
+}
+
+.description{
+  flex: 1;
 }
 
 /* 设置区域 */
@@ -330,6 +335,63 @@ body {
   font-size: 12px;
 }
 
+/* 帮助链接悬浮提示 */
+.help-link {
+  color: #0969da;
+  cursor: help;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  position: relative;
+}
+
+.help-link:hover .help-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.help-tooltip {
+  visibility: hidden;
+  position: absolute;
+  bottom: 100%;
+  left: 150%;
+  transform: translateX(-50%);
+  background-color: #24292e;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  max-width: 350px;
+  white-space: pre-wrap;
+}
+
+.help-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  transform: translateX(-10%);
+  border: 6px solid transparent;
+  border-top-color: #24292e;
+}
+
+.help-tooltip strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.help-tooltip code {
+  background-color: #373e47;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 11px;
+}
+
 .checkbox-label {
   display: flex;
   align-items: center;
@@ -354,12 +416,12 @@ body {
 }
 
 /* 单选按钮组 */
-.radio-group {
+.form-group .radio-group {
   display: flex;
   gap: 20px;
 }
 
-.radio-label {
+.form-group .radio-label {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -426,18 +488,18 @@ body {
   color: #0366d6;
 }
 
-。status-message.success {
+.status-message.success {
   background-color: #dcffe4;
   color: #28a745;
 }
 
-。status-message.error {
+.status-message.error {
   background-color: #ffeef0;
   color: #d73a49;
 }
 
 /* 消息提示 */
-。message {
+.message {
   position: fixed;
   bottom: 16px;
   left: 50%;
@@ -450,28 +512,28 @@ body {
   z-index: 1000;
 }
 
-。message:not(:empty) {
+.message:not(:empty) {
   opacity: 1;
 }
 
-。message.info {
+.message.info {
   background-color: #0366d6;
   color: #fff;
 }
 
-。message.success {
+.message.success {
   background-color: #28a745;
   color: #fff;
 }
 
-。message.error {
+.message.error {
   background-color: #d73a49;
   color: #fff;
 }
 
 /* 响应式设计 */
 @media (max-width: 400px) {
-  。container {
+  .container {
     max-width: 100%;
     padding: 12px;
   }
@@ -481,7 +543,7 @@ body {
     padding: 16px;
   }
 
-  。btn {
+  .btn {
     padding: 8px 12px;
     font-size: 13px;
   }
