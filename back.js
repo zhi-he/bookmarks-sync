@@ -794,8 +794,23 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-// 监听书签变化事件
+// 书签变更防抖定时器，避免短时间内多次变更触发多次上传
+let bookmarkChangeDebounceTimer = null;
+
+async function onBookmarkChanged() {
+  clearTimeout(bookmarkChangeDebounceTimer);
+  bookmarkChangeDebounceTimer = setTimeout(async () => {
+    if (await gistExists()) {
+      await uploadBookmarks();
+    }
+  }, 5000);
+}
+
+// 监听所有书签变化事件
+chrome.bookmarks.onCreated.addListener(onBookmarkChanged);
+chrome.bookmarks.onRemoved.addListener(onBookmarkChanged);
 chrome.bookmarks.onChanged.addListener(onBookmarkChanged);
+chrome.bookmarks.onMoved.addListener(onBookmarkChanged);
 
 // 浏览器启动时从远端下载书签
 chrome.runtime.onStartup.addListener(async () => {
