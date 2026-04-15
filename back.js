@@ -797,17 +797,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // 监听书签变化事件
 chrome.bookmarks.onChanged.addListener(onBookmarkChanged);
 
-// 浏览器启动时检查同步
+// 浏览器启动时从远端下载书签
 chrome.runtime.onStartup.addListener(async () => {
   // 只在 Gist 存在时才同步
   if (await gistExists()) {
-    await uploadBookmarks();
+    await downloadBookmarks();
   }
 });
 
-// 浏览器唤醒时检查同步
+// Service Worker 被回收前自动上传书签
 chrome.runtime.onSuspend.addListener(async () => {
-  // 浏览器即将休眠时同步
+  // 扩展后台进程即将被浏览器挂起时，确保书签已同步到远端
   if (await gistExists()) {
     await uploadBookmarks();
   }
